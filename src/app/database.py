@@ -22,11 +22,10 @@ slots = Table(
     "slots",
     metadata,
     Column("slot_id", Integer, primary_key=True),
+    Column("date", DateTime, nullable=False),
     Column("user_id", Integer, ForeignKey("users.user_id"), nullable=False),
-    Column("start_time", DateTime, nullable=False),
-    Column("end_time", DateTime, nullable=True),
-    Column("is_available", Boolean, nullable=False),
-    Column("duration", Integer, nullable=False)
+    Column("start_hour", Integer, nullable=False),
+    Column("is_available", Boolean, nullable=False)
 )
 
 
