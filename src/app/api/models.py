@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from pydantic import BaseModel, Field
 
 
@@ -23,11 +25,15 @@ class User(BaseModel):
     email: str
 
 
+class Datetime(object):
+    pass
+
+
 class Slot(BaseModel):
     slot_id: int
     user_id: int
-    start_time: str
-    end_time: str
+    start_time: datetime
+    end_time: datetime
     is_available: bool
     duration: int
 
