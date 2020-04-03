@@ -8,7 +8,7 @@ from src.app.database import users, database
 router = APIRouter()
 
 
-@router.post('/user/register/')
+@router.post('/users/register/')
 async def register(payload: UserRegistration):
     token = secrets.token_hex(20)
     query = users.insert().values(username=payload.username, email=payload.email, token=token)

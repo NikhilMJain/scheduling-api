@@ -20,23 +20,29 @@ class AvailableSlots(BaseModel):
     time_intervals: List[TimeRange]
 
 
-class User(BaseModel):
+class UserResponse(BaseModel):
     user_id: int
-    username: str
-    token: str
     email: str
+
+
+class User(UserResponse):
+    token: str
+    username: str
 
 
 class Slot(BaseModel):
     slot_id: int
     user_id: int
     start_time: datetime.datetime
-    end_time: datetime.datetime
     is_available: bool
-    duration: int
 
 
 class Meeting(BaseModel):
     meeting_id: int
     slot_id: int
     status: int
+
+
+class MeetingPayload(BaseModel):
+    slot_id: int
+    guest_email_ids: List[str]

@@ -2,5 +2,10 @@ from enum import Enum
 
 
 class MeetingStatus(Enum):
-    SCHEDULED = 1
-    CANCELLED = 2
+    Scheduled = 1
+    Cancelled = 2
+
+
+class MeetingMemberRole(Enum):
+    Scheduler = 1
+    Guest = 2

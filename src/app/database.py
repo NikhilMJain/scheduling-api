@@ -34,18 +34,17 @@ meetings = Table(
     metadata,
     Column('meeting_id', Integer, primary_key=True),
     Column('slot_id', Integer, ForeignKey('slots.slot_id'), nullable=False),
-    Column('setter_email', String(50), nullable=False),
+    Column('creator_id', ForeignKey('users.user_id'), nullable=False),
     Column('status', String(50), nullable=False)
 )
 
 
-meeting_members = Table(
-    'meeting_members',
+meeting_guests = Table(
+    'meeting_guests',
     metadata,
-    Column('meeting_member_id', Integer, primary_key=True),
+    Column('meeting_guest_id', Integer, primary_key=True),
     Column('meeting_id', Integer, ForeignKey('meetings.meeting_id'), nullable=False),
-    Column('email', String(50), nullable=False),
-    Column('role', String(50), nullable=True)
+    Column('email', String(50), nullable=False)
 )
 
 

@@ -7,7 +7,7 @@ from src.app.database import users, database
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='/token')
 
 
-async def get_current_user(token: str = Depends(oauth2_scheme)):
+async def get_auth_user(token: str = Depends(oauth2_scheme)):
     query = users.select().where(token == users.c.token)
     user = await database.fetch_one(query)
     if not user:
