@@ -1,21 +1,23 @@
-from datetime import datetime
+import datetime
+from typing import List
 
-from pydantic import BaseModel, Field
-
-
-class NoteSchema(BaseModel):
-    title: str = Field(..., min_length=3, max_length=50)
-    description: str = Field(..., min_length=3, max_length=50)
-
-
-class NoteDB(NoteSchema):
-    id: int
+from pydantic import BaseModel
 
 
 class UserRegistration(BaseModel):
     username: str
     email: str
     token: str = None
+
+
+class TimeRange(BaseModel):
+    start_time: datetime.datetime
+    end_time: datetime.datetime
+
+
+class AvailableSlots(BaseModel):
+    date: datetime.date
+    time_intervals: List[TimeRange]
 
 
 class User(BaseModel):
@@ -25,15 +27,11 @@ class User(BaseModel):
     email: str
 
 
-class Datetime(object):
-    pass
-
-
 class Slot(BaseModel):
     slot_id: int
     user_id: int
-    start_time: datetime
-    end_time: datetime
+    start_time: datetime.datetime
+    end_time: datetime.datetime
     is_available: bool
     duration: int
 
