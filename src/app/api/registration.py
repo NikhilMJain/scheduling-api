@@ -11,7 +11,7 @@ router = APIRouter()
 @router.post('/users/register/')
 async def register(payload: UserRegistration):
     token = secrets.token_hex(20)
-    query = users.insert().values(username=payload.username, email=payload.email, token=token)
+    query = users.insert().values(email=payload.email, token=token)
     await database.execute(query)
     response_object = {
         'email': payload.email,
