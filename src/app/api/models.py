@@ -15,7 +15,7 @@ class TimeRange(BaseModel):
 
 class AvailableSlots(BaseModel):
     date: datetime.date
-    time_intervals: List[TimeRange]
+    time_intervals: conlist(TimeRange, min_items=1)
 
 
 class UserResponse(BaseModel):
