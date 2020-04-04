@@ -10,7 +10,7 @@ from src.app.database import slots, database, meetings, meeting_guests
 router = APIRouter()
 
 
-@router.post('/meetings/', status_code=201)
+@router.post('/v1/meetings/', status_code=201)
 async def schedule_new_meeting(payload: MeetingPayload, current_user: User = Depends(get_auth_user)):
     slot = await database.fetch_one(slots.select().where(slots.c.slot_id == payload.slot_id))
 

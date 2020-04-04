@@ -17,7 +17,7 @@ async def get_users(user_id: int = None, current_user: User = Depends(get_auth_u
     return await database.fetch_one(query)
 
 
-@router.post('/users/')
+@router.post('/v1/users/')
 async def add_new_user(payload: NewUser, response: Response):
     token = secrets.token_hex(20)
     query = users.insert().values(email=payload.email, token=token, first_name=payload.first_name,
