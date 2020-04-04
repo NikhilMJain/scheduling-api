@@ -6,14 +6,14 @@ from sqlalchemy import and_
 
 from src.app.api.auth import get_auth_user
 from src.app.api.enums import MeetingStatus
-from src.app.api.models import User, Slot, AvailableSlots, UserResponse, MeetingPayload
+from src.app.api.models import User, Slot, AvailableSlots, UserResponse, MeetingPayload, MeetingType
 from src.app.database import slots, database, users, meetings, meeting_guests
 
 router = APIRouter()
 
 
-@router.get('/{user_id}/slots/', response_model=List[Slot])
-async def get_slots(user_id: int, current_user: User = Depends(get_auth_user)):
+@router.get('/slots/', response_model=List[Slot])
+async def get_available_slots(user_id: int, current_user: User = Depends(get_auth_user)):
     query = slots.select().where(and_(slots.c.user_id == user_id, slots.c.is_available == True))
     available_slots = await database.fetch_all(query)
     return available_slots
