@@ -6,6 +6,8 @@ from pydantic import BaseModel, conlist
 
 class NewUser(BaseModel):
     email: str
+    first_name: str
+    last_name: str
 
 
 class TimeRange(BaseModel):
@@ -21,11 +23,12 @@ class AvailableSlots(BaseModel):
 class UserResponse(BaseModel):
     user_id: int
     email: str
+    first_name: str
+    last_name: str
 
 
 class User(UserResponse):
     token: str
-    username: str
 
 
 class Slot(BaseModel):
