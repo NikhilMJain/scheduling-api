@@ -13,7 +13,6 @@ users = Table(
     'users',
     metadata,
     Column('user_id', Integer, primary_key=True),
-    Column('username', String(50), nullable=False),
     Column('token', String(100), nullable=False),
     Column('email', String(100), nullable=False)
 )

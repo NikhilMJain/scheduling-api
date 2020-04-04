@@ -1,13 +1,11 @@
 import datetime
 from typing import List
 
-from pydantic import BaseModel
+from pydantic import BaseModel, conlist
 
 
 class UserRegistration(BaseModel):
-    username: str
     email: str
-    token: str = None
 
 
 class TimeRange(BaseModel):
