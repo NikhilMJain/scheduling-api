@@ -13,7 +13,7 @@ class GoogleCalendarHandler:
     def create_event(self, calendar_id, start_time, end_time, subject, notes, guest_emails):
         service = self._get_authenticated_service()
         event = self._get_event_dict(start_time, end_time, subject, notes, guest_emails)
-        event = service.events().insert(calendarId=calendar_id, body=event).execute()
+        event = service.events().insert(calendarId=calendar_id, body=event, sendUpdates='all').execute()
         return event
 
     def _get_authenticated_service(self):
