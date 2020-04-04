@@ -21,14 +21,16 @@ async def get_available_slots(user_id: int, current_user: User = Depends(get_aut
 @router.post('/v1/slots/', status_code=201)
 async def specify_available_slots(payload: List[AvailableSlots], current_user: User = Depends(get_auth_user)):
     try:
+        values = list()
+        query = slots.insert()
         for item in payload:
             for interval in item.time_intervals:
                 hours = (interval.end_time - interval.start_time).seconds // 3600
                 for hour in range(hours):
                     start_time = interval.start_time + timedelta(hours=hour)
-                    query = slots.insert().values(date=item.date, user_id=current_user.user_id, start_time=start_time,
-                                                  is_available=True)
-                    await database.execute(query)
+                    values.append(dict(date=item.date, user_id=current_user.user_id, start_time=start_time,
+                                       is_available=True))
+        await database.execute_many(query=query, values=values)
     except Exception as e:
         # log here later
         pass
