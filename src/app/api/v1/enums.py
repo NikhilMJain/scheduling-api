@@ -6,6 +6,6 @@ class MeetingStatus(Enum):
     Cancelled = 2
 
 
-class MeetingMemberRole(Enum):
-    Scheduler = 1
-    Guest = 2
+class MeetingType(str, Enum):
+    created = 'created'
+    scheduled = 'scheduled'

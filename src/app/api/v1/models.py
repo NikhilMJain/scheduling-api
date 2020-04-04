@@ -4,7 +4,7 @@ from typing import List
 from pydantic import BaseModel, conlist
 
 
-class UserRegistration(BaseModel):
+class NewUser(BaseModel):
     email: str
 
 
@@ -44,3 +44,5 @@ class Meeting(BaseModel):
 class MeetingPayload(BaseModel):
     slot_id: int
     guest_email_ids: List[str]
+
+
