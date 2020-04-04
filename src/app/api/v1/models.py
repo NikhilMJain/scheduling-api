@@ -41,11 +41,15 @@ class Slot(BaseModel):
 class Meeting(BaseModel):
     meeting_id: int
     slot_id: int
-    status: int
+    status: str
+    subject: str
+    notes: str = None
 
 
 class MeetingPayload(BaseModel):
     slot_id: int
-    guest_email_ids: List[str]
+    subject: str
+    notes: str = None
+    guest_email_ids: List[str] = list()
 
 

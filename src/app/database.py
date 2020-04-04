@@ -1,8 +1,6 @@
-import os
-
 from databases import Database
-from sqlalchemy import Column, DateTime, Integer, MetaData, String, Table, create_engine, ForeignKey, Boolean, Date, \
-    UniqueConstraint
+from sqlalchemy import (Column, DateTime, Integer, MetaData, String, Table, create_engine, ForeignKey, Boolean, Date,
+                        UniqueConstraint)
 
 from src.app.api.v1 import config
 
@@ -34,7 +32,6 @@ slots = Table(
     UniqueConstraint('user_id', 'start_time')
 )
 
-
 meetings = Table(
     'meetings',
     metadata,
@@ -42,9 +39,9 @@ meetings = Table(
     Column('slot_id', Integer, ForeignKey('slots.slot_id'), nullable=False),
     Column('creator_id', ForeignKey('users.user_id'), nullable=False),
     Column('status', String(50), nullable=False),
+    Column('notes', String(50), nullable=True),
     UniqueConstraint('slot_id', 'creator_id')
 )
-
 
 meeting_guests = Table(
     'meeting_guests',
@@ -54,6 +51,5 @@ meeting_guests = Table(
     Column('email', String(50), nullable=False),
     UniqueConstraint('meeting_id', 'email')
 )
-
 
 database = Database(DATABASE_URL)

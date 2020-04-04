@@ -21,7 +21,7 @@ async def schedule_new_meeting(payload: MeetingPayload, current_user: User = Dep
 
     meeting_id = await database.execute(
         meetings.insert().values(slot_id=payload.slot_id, creator_id=current_user.user_id,
-                                 status=MeetingStatus.Scheduled.name))
+                                 status=MeetingStatus.Scheduled.name, notes=payload.notes))
     for email in payload.guest_email_ids:
         await database.execute(meeting_guests.insert().values(meeting_id=meeting_id, email=email))
 
