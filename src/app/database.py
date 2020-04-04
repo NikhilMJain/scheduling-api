@@ -18,6 +18,7 @@ users = Table(
     Column('email', String(100), nullable=False),
     Column('first_name', String(100), nullable=False),
     Column('last_name', String(100), nullable=False),
+    Column('calendar_id', String(100), nullable=True),
     UniqueConstraint('email')
 )
 

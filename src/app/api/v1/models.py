@@ -29,6 +29,7 @@ class UserResponse(BaseModel):
 
 class User(UserResponse):
     token: str
+    calendar_id: str = None
 
 
 class Slot(BaseModel):
