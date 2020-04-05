@@ -40,7 +40,8 @@ meetings = Table(
     Column('slot_id', Integer, ForeignKey('slots.slot_id'), nullable=False),
     Column('creator_id', ForeignKey('users.user_id'), nullable=False),
     Column('status', String(50), nullable=False),
-    Column('notes', String(50), nullable=True),
+    Column('notes', String(500), nullable=True),
+    Column('subject', String(50), nullable=True),
     UniqueConstraint('slot_id', 'creator_id')
 )
 
