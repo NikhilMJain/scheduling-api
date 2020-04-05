@@ -9,7 +9,7 @@ class TestMeetings(BaseTestCase):
             "notes": "Current pending items",
             "guest_email_ids": ['random@gmail.com']
         }
-        response = self.client.post('/v1/meetings/', json=payload, headers=self.get_auth_header())
+        response = self.client.post('/v1/meetings/', json=payload, headers=self.get_auth_header(1))
         self.assertEqual(response.status_code, 404)
 
     def test_create_new_meeting_for_existing_slot(self):
@@ -24,9 +24,9 @@ class TestMeetings(BaseTestCase):
                 ]
             }
         ]
-        first_user_header = self.get_auth_header()
+        first_user_header = self.get_auth_header(1)
         define_slots_response = self.client.post('/v1/slots/', json=slot_payload, headers=first_user_header)
-        second_user_header = self.get_auth_header()
+        second_user_header = self.get_auth_header(2)
         get_all_slots_response = self.client.get('/v1/users/{}/slots/'.format(first_user_header['user_id']),
                                    headers=second_user_header)
 
