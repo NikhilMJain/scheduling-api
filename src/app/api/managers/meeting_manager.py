@@ -25,7 +25,8 @@ class MeetingManager(object):
         return meeting_id
 
     async def _get_slot(self, slot_id) -> Record:
-        return await BaseCRUD().fetch(model=slots, where=(slots.c.slot_id == slot_id))
+        slot = await BaseCRUD().fetch(model=slots, where=(slots.c.slot_id == slot_id))
+        return slot
 
     def _validate_slot(self, slot) -> None:
         if not slot:

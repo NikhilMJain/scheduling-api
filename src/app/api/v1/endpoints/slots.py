@@ -9,11 +9,11 @@ from src.app.api.v1.models import Slot, User, AvailableSlots
 router = APIRouter()
 
 
-@router.get('/', response_model=List[Slot])
+@router.get('/users/{user_id}/slots/', response_model=List[Slot])
 async def get_available_slots(user_id: int, current_user: User = Depends(get_auth_user)):
     return await SlotManager().get_available_slots_for_user(user_id)
 
 
-@router.post('/', status_code=201)
+@router.post('/slots/', status_code=201)
 async def define_available_slots(payload: List[AvailableSlots], current_user: User = Depends(get_auth_user)):
     return await SlotManager().define_available_slots(available_slots=payload, current_user=current_user)

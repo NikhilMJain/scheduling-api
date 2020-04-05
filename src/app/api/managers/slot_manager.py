@@ -12,8 +12,8 @@ from src.app.database import slots, database
 
 class SlotManager:
     async def get_available_slots_for_user(self, user_id):
-        return await BaseCRUD().fetch(model=slots, where=and_(slots.c.user_id == user_id, slots.c.is_available ==
-                                                              True))
+        return await BaseCRUD().fetch_all(model=slots, where=and_(slots.c.user_id == user_id, slots.c.is_available ==
+                                                                  True))
 
     @database.transaction()
     async def define_available_slots(self, available_slots: List[AvailableSlots], current_user: User):

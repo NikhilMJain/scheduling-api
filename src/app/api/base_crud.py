@@ -12,7 +12,8 @@ class BaseCRUD(object):
 
     async def fetch(self, model, select_attributes=None, where=None):
         query = model.select(select_attributes).where(where)
-        return await database.fetch_one(query)
+        result = await database.fetch_one(query)
+        return dict(result) if result else None
 
     async def fetch_all(self, model, select_attributes=None, where=None):
         query = model.select(select_attributes).where(where)
