@@ -52,9 +52,10 @@ class MeetingManager(object):
     def _create_event_in_google_calendar(self, current_user: User, meeting: MeetingPayload,
                                          start_time: datetime) -> None:
         end_time = start_time + timedelta(hours=1)
+        guest_email_ids = meeting.guest_email_ids + [current_user.email]
         GoogleCalendarHandler().create_event(calendar_id=current_user.calendar_id, start_time=start_time,
                                              end_time=end_time, subject=meeting.subject, notes=meeting.notes,
-                                             guest_emails=meeting.guest_email_ids)
+                                             guest_emails=guest_email_ids)
 
     async def get_created_meetings(self, current_user: User) -> List[Record]:
         return await BaseCRUD().fetch_all(model=meetings, where=(current_user.user_id == meetings.c.creator_id))
