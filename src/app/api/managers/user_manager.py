@@ -1,5 +1,8 @@
 import secrets
 
+from fastapi import HTTPException
+from psycopg2._psycopg import IntegrityError
+
 from src.app.api.base_crud import BaseCRUD
 from src.app.database import users, database
 
@@ -10,8 +13,11 @@ class UserManager(object):
 
     @database.transaction()
     async def add_user(self, user):
-        token = secrets.token_hex(20)
-        user_id = await self._insert_user(user, token)
+        try:
+            token = secrets.token_hex(20)
+            user_id = await self._insert_user(user, token)
+        except IntegrityError:
+            raise HTTPException(status_code=400, detail='Email address already exists')
         return dict(user_id=user_id, email=user.email, token=token)
 
     async def _insert_user(self, user, token):

@@ -14,7 +14,7 @@ async def get_users(user_id: int = None, current_user: User = Depends(get_auth_u
     return await UserManager().get_user_by_id(user_id)
 
 
-@router.post('/')
+@router.post('/', status_code=201)
 async def add_new_user(user: NewUser, response: Response):
     new_user = await UserManager().add_user(user=user)
     response.headers['Location'] = '{prefix}/users/{user_id}'.format(prefix=API_PREFIX, user_id=new_user['user_id'])
