@@ -11,14 +11,14 @@ from src.app.database import slots, database
 router = APIRouter()
 
 
-@router.get('/v1/slots/', response_model=List[Slot], tags='slots')
+@router.get('/', response_model=List[Slot])
 async def get_available_slots(user_id: int, current_user: User = Depends(get_auth_user)):
     query = slots.select().where(and_(slots.c.user_id == user_id, slots.c.is_available == True))
     available_slots = await database.fetch_all(query)
     return available_slots
 
 
-@router.post('/v1/slots/', status_code=201, tags='slots')
+@router.post('/', status_code=201)
 async def specify_available_slots(payload: List[AvailableSlots], current_user: User = Depends(get_auth_user)):
     try:
         values = list()

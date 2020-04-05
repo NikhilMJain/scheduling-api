@@ -12,7 +12,7 @@ from src.integrations.google_calendar.create_calendar_event import GoogleCalenda
 router = APIRouter()
 
 
-@router.post('/v1/meetings/', status_code=201, tags='meetings')
+@router.post('/', status_code=201)
 async def schedule_new_meeting(payload: MeetingPayload, current_user: User = Depends(get_auth_user)):
     slot = await database.fetch_one(slots.select().where(slots.c.slot_id == payload.slot_id))
 
@@ -43,7 +43,7 @@ async def schedule_new_meeting(payload: MeetingPayload, current_user: User = Dep
     return {'meeting_id': meeting_id}
 
 
-@router.get('/meetings/', response_model=List[UserResponse], tags=['meetings'])
+@router.get('/', response_model=List[UserResponse])
 async def get_meetings(type: MeetingType, current_user: User = Depends(get_auth_user)):
     if type == MeetingType.created:
         query = meetings.select().where(current_user.user_id == meetings.c.creator_id)
