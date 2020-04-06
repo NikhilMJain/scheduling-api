@@ -8,6 +8,7 @@ class NewUser(BaseModel):
     email: str
     first_name: str
     last_name: str
+    calendar_id: str = None
 
 
 class TimeRange(BaseModel):
