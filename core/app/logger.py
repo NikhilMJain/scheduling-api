@@ -1,7 +1,7 @@
 import logging
 
 log = logging.getLogger(__name__)
-log.setLevel(logging.WARNING)
+log.setLevel(logging.INFO)
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s ----> %(message)s")
 
 file_handler = logging.FileHandler(filename="error.log")
