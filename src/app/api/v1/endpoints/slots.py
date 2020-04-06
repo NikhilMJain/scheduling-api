@@ -1,3 +1,4 @@
+from datetime import date
 from typing import List
 
 from fastapi import Depends, APIRouter
@@ -10,10 +11,11 @@ router = APIRouter()
 
 
 @router.get('/users/{user_id}/slots/', response_model=List[Slot])
-async def get_available_slots(user_id: int, current_user: User = Depends(get_auth_user)):
-    return await SlotManager().get_available_slots_for_user(user_id)
+async def get_available_slots(user_id: int, filter_date: date = None, current_user: User = Depends(get_auth_user)):
+    return await SlotManager().get_available_slots_for_user(user_id, filter_date)
 
 
 @router.post('/slots/', status_code=201)
 async def define_available_slots(payload: List[AvailableSlots], current_user: User = Depends(get_auth_user)):
-    return await SlotManager().define_available_slots(available_slots=payload, current_user=current_user)
+    await SlotManager().define_available_slots(available_slots=payload, current_user=current_user)
+    return {}

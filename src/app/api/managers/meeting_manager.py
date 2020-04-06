@@ -25,11 +25,11 @@ class MeetingManager(object):
             self._create_event_in_google_calendar(current_user, meeting, slot.get('start_time'))
         return meeting_id
 
-    async def _get_slot(self, slot_id) -> Record:
+    async def _get_slot(self, slot_id) -> dict:
         slot = await BaseCRUD().fetch(model=slots, where=(slots.c.slot_id == slot_id))
         return slot
 
-    def _validate_slot(self, slot) -> None:
+    def _validate_slot(self, slot: dict) -> None:
         if not slot:
             raise HTTPException(status_code=404, detail='Slot not found')
         if not slot.get('is_available'):
