@@ -1,6 +1,7 @@
 import secrets
 from typing import Dict
 
+from asyncpg import UniqueViolationError
 from fastapi import HTTPException
 from psycopg2._psycopg import IntegrityError
 
@@ -18,7 +19,7 @@ class UserManager(object):
         try:
             token = secrets.token_hex(20)
             user_id = await self._insert_user(user, token)
-        except IntegrityError:
+        except (IntegrityError, UniqueViolationError):
             raise HTTPException(status_code=400, detail='Email address already exists')
         return dict(user_id=user_id, email=user.email, token=token)
 
