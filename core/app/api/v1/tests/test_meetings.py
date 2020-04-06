@@ -28,7 +28,7 @@ class TestMeetings(BaseTestCase):
         define_slots_response = self.client.post('/v1/slots/', json=slot_payload, headers=first_user_header)
         second_user_header = self.get_auth_header(2)
         get_all_slots_response = self.client.get('/v1/users/{}/slots/'.format(first_user_header['user_id']),
-                                   headers=second_user_header)
+                                                 headers=second_user_header)
 
         meeting_payload = {
             "slot_id": get_all_slots_response.json()[0]['slot_id'],
