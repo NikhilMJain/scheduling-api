@@ -2,7 +2,7 @@ import os
 import random
 from unittest import TestCase
 
-from src.app.api.v1.tests.conftest import client
+from core.app.api.v1.tests.conftest import client
 
 
 class BaseTestCase(TestCase):

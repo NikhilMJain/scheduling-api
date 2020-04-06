@@ -3,9 +3,9 @@ from typing import List
 
 from fastapi import Depends, APIRouter
 
-from src.app.api.managers.slot_manager import SlotManager
-from src.app.api.v1.auth import get_auth_user
-from src.app.api.v1.models import Slot, User, AvailableSlots
+from core.app.api.managers.slot_manager import SlotManager
+from core.app.api.v1.auth import get_auth_user
+from core.app.api.v1.models import Slot, User, AvailableSlots
 
 router = APIRouter()
 

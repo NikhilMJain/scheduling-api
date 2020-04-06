@@ -4,13 +4,13 @@ from typing import List, Dict
 from databases.backends.postgres import Record
 from fastapi import HTTPException
 
-from src.app.api.base_crud import BaseCRUD
-from src.app.api.v1 import config
-from src.app.api.v1.enums import MeetingStatus
-from src.app.api.v1.models import MeetingPayload, User
-from src.app.database import slots, meetings, meeting_guests, database, users
-from src.app.logger import log
-from src.integrations.google_calendar.create_calendar_event import GoogleCalendarHandler
+from core.app.api.base_crud import BaseCRUD
+from core.app.api.v1 import config
+from core.app.api.v1.enums import MeetingStatus
+from core.app.api.v1.models import MeetingPayload, User
+from core.app.database import slots, meetings, meeting_guests, database, users
+from core.app.logger import log
+from core.integrations.google_calendar.create_calendar_event import GoogleCalendarHandler
 
 
 class MeetingManager(object):

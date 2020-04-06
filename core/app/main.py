@@ -1,8 +1,8 @@
 import uvicorn
 from fastapi import FastAPI
 
-from src.app.api.v1.endpoints import meetings, users, slots
-from src.app.database import metadata, engine, database
+from core.app.api.v1.endpoints import meetings, users, slots
+from core.app.database import metadata, engine, database
 
 metadata.create_all(engine)
 

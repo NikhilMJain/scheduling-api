@@ -1,4 +1,4 @@
-from src.app.api.v1.tests.base_test_case import BaseTestCase
+from core.app.api.v1.tests.base_test_case import BaseTestCase
 
 
 class TestMeetings(BaseTestCase):

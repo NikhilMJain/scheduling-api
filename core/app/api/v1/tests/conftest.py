@@ -1,7 +1,7 @@
 from starlette.testclient import TestClient
 
-from src.app.database import metadata, engine
-from src.app.main import app
+from core.app.database import metadata, engine
+from core.app.main import app
 
 
 def client():

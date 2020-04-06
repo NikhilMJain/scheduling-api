@@ -2,7 +2,7 @@ from databases import Database
 from sqlalchemy import (Column, DateTime, Integer, MetaData, String, Table, create_engine, ForeignKey, Boolean, Date,
                         UniqueConstraint)
 
-from src.app.api.v1 import config
+from core.app.api.v1 import config
 
 DATABASE_URL = config.DATABASE_URL
 

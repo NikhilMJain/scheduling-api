@@ -1,11 +1,11 @@
 from fastapi import Depends, APIRouter
 from starlette.responses import Response
 
-from src.app.api.managers.user_manager import UserManager
-from src.app.api.v1.auth import get_auth_user
-from src.app.api.v1.config import API_PREFIX
-from src.app.api.v1.models import UserResponse, User, NewUser
-from src.app.logger import log
+from core.app.api.managers.user_manager import UserManager
+from core.app.api.v1.auth import get_auth_user
+from core.app.api.v1.config import API_PREFIX
+from core.app.api.v1.models import UserResponse, User, NewUser
+from core.app.logger import log
 
 router = APIRouter()
 

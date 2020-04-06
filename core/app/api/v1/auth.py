@@ -1,9 +1,9 @@
 from fastapi import Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer
 
-from src.app.api.v1 import config
-from src.app.api.v1.models import User
-from src.app.database import users, database
+from core.app.api.v1 import config
+from core.app.api.v1.models import User
+from core.app.database import users, database
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='/users')
 

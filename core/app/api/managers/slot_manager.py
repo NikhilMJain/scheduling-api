@@ -6,10 +6,10 @@ from databases.backends.postgres import Record
 from fastapi import HTTPException
 from sqlalchemy import and_
 
-from src.app.api.base_crud import BaseCRUD
-from src.app.api.v1.models import AvailableSlots, User, TimeRange
-from src.app.database import slots, database
-from src.app.logger import log
+from core.app.api.base_crud import BaseCRUD
+from core.app.api.v1.models import AvailableSlots, User, TimeRange
+from core.app.database import slots, database
+from core.app.logger import log
 
 
 class SlotManager:

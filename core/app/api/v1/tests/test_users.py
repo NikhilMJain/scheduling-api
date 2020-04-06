@@ -1,6 +1,6 @@
 from sqlite3 import IntegrityError
 
-from src.app.api.v1.tests.base_test_case import BaseTestCase
+from core.app.api.v1.tests.base_test_case import BaseTestCase
 
 
 class TestUsers(BaseTestCase):

@@ -4,9 +4,9 @@ from typing import Dict
 from fastapi import HTTPException
 from psycopg2._psycopg import IntegrityError
 
-from src.app.api.base_crud import BaseCRUD
-from src.app.api.v1.models import NewUser
-from src.app.database import users, database
+from core.app.api.base_crud import BaseCRUD
+from core.app.api.v1.models import NewUser
+from core.app.database import users, database
 
 
 class UserManager(object):

@@ -3,10 +3,10 @@ from typing import List
 from fastapi import Depends, APIRouter
 from starlette.responses import Response
 
-from src.app.api.managers.meeting_manager import MeetingManager
-from src.app.api.v1.auth import get_auth_user
-from src.app.api.v1.config import API_PREFIX
-from src.app.api.v1.models import User, MeetingPayload, Meeting
+from core.app.api.managers.meeting_manager import MeetingManager
+from core.app.api.v1.auth import get_auth_user
+from core.app.api.v1.config import API_PREFIX
+from core.app.api.v1.models import User, MeetingPayload, Meeting
 
 router = APIRouter()
 

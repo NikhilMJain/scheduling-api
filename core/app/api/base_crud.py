@@ -3,7 +3,7 @@ from typing import List, Dict
 from databases.backends.postgres import Record
 from sqlalchemy import Table, and_
 
-from src.app.database import database
+from core.app.database import database
 
 
 class BaseCRUD(object):
