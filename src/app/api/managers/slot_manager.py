@@ -1,4 +1,4 @@
-from datetime import timedelta, date
+import datetime
 from typing import List, Dict
 
 from asyncpg import UniqueViolationError
@@ -13,11 +13,11 @@ from src.app.logger import log
 
 
 class SlotManager:
-    async def get_available_slots_for_user(self, user_id: int, filter_date: date) -> List[Record]:
+    async def get_available_slots_for_user(self, user_id: int, date: datetime.date) -> List[Record]:
         log.info('Get slots for user id {}'.format(user_id))
         where = and_(slots.c.user_id == user_id, slots.c.is_available == True)
-        if filter_date:
-            where = where & and_(slots.c.date == filter_date)
+        if date:
+            where = where & and_(slots.c.date == date)
         return await BaseCRUD().fetch_all(model=slots, where=where)
 
     @database.transaction()
@@ -36,7 +36,7 @@ class SlotManager:
             raise HTTPException(status_code=400, detail='Start time must be lesser than end time')
         hours = (interval.end_time - interval.start_time).seconds // 3600
         for hour in range(hours):
-            start_time = interval.start_time + timedelta(hours=hour)
+            start_time = interval.start_time + datetime.timedelta(hours=hour)
             values.append(dict(date=slot.date, user_id=current_user.user_id, start_time=start_time,
                                is_available=True))
         return values
