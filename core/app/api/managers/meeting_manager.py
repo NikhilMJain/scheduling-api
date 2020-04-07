@@ -10,7 +10,7 @@ from core.app.api.v1.enums import MeetingStatus
 from core.app.api.v1.models import MeetingPayload, User
 from core.app.database import slots, meetings, meeting_guests, database, users
 from core.app.logger import log
-from core.integrations.google_calendar.create_calendar_event import GoogleCalendarHandler
+from core.integrations.google_calendar.google_calendar_handler import GoogleCalendarHandler
 
 
 class MeetingManager(object):
