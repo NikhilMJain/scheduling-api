@@ -1,4 +1,6 @@
-# Scheduling API
+# Scheduling API 
+
+Similar to Calendly ([https://calendly.com](https://calendly.com)).
 
 This is an API where you can create a public calendar and let others book meetings with you based on your availability.
 
